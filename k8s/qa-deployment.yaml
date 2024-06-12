@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qa-deployment
+  namespace: qa-namespace
+spec:
+  selector:
+    matchLabels:
+      app: qa-deployment
+  template:
+    metadata:
+      labels:
+        app: qa-deployment
+        
+    spec:
+      containers:
+      - name: qa-deployment
+        image: idrisniyi94/policy-sentry:qa
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
